@@ -240,7 +240,7 @@
             this.buttonDepthSolve.TabIndex = 11;
             this.buttonDepthSolve.Text = "Поиск в глубину";
             this.buttonDepthSolve.UseVisualStyleBackColor = true;
-            this.buttonDepthSolve.Click += new System.EventHandler(this.button1_Click);
+            this.buttonDepthSolve.Click += new System.EventHandler(this.buttonDepthSolve_Click);
             // 
             // button2
             // 
