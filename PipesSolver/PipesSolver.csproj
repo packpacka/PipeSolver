@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PipesSolver</RootNamespace>
+    <AssemblyName>PipesSolver</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Brainteaser.cs" />
+    <Compile Include="PipeListCircle.cs" />
+    <Compile Include="FormPipeSolver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPipeSolver.Designer.cs">
+      <DependentUpon>FormPipeSolver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orientation.cs" />
+    <Compile Include="Pipe.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SolutionNode.cs" />
+    <Compile Include="SolutionThree.cs" />
+    <EmbeddedResource Include="FormPipeSolver.resx">
+      <DependentUpon>FormPipeSolver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testimage.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direct1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direct2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\border.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fieldsegment.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\input.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\output.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enter.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
