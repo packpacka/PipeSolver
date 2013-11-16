@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipesSolver", "PipesSolver\PipesSolver.csproj", "{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}.Debug|x86.ActiveCfg = Debug|x86
+		{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}.Debug|x86.Build.0 = Debug|x86
+		{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}.Release|x86.ActiveCfg = Release|x86
+		{6AF1A9B0-979C-47E3-A8E1-45C6F3DFF969}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

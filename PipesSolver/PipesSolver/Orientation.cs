@@ -9,9 +9,8 @@ namespace PipesSolver
     /// <summary>
     /// Класс вектора направления 
     /// </summary>
-    [Serializable]
     public class Orientation
-    {
+    {       
         /// <summary>
         /// Направление вверх
         /// </summary>
@@ -47,28 +46,15 @@ namespace PipesSolver
         /// </summary>
         private List<Point> _Orientations = new List<Point>();
 
-        private static List<Point> _StaticOrientations;
-
-        /// <summary>
-        /// Количество возможных векторов направлений
-        /// </summary>
-        public static int OrientationsCount
-        {
-            get { return _StaticOrientations.Count; }
-        }
-
         /// <summary>
         /// Конструктор класса
         /// </summary>
         public Orientation()
         {
-            
             _Orientations.Add(new Point(1, 0));
             _Orientations.Add(new Point(0, 1));
             _Orientations.Add(new Point(-1, 0));
             _Orientations.Add(new Point(0, -1));
-
-            _StaticOrientations = _Orientations;
 
             _X = _Orientations[0].X;
             _Y = _Orientations[0].Y;
@@ -78,14 +64,12 @@ namespace PipesSolver
         /// </summary>
         /// <param name="parX">Горизонтальная составляющая вектора направления</param>
         /// <param name="parY">Вертикальная составляющая вектора направления</param>
-        public Orientation(int parX, int parY)
+        private Orientation(int parX, int parY)
         {
             _Orientations.Add(new Point(1, 0));
             _Orientations.Add(new Point(0, 1));
             _Orientations.Add(new Point(-1, 0));
             _Orientations.Add(new Point(0, -1));
-
-            _StaticOrientations = _Orientations;
 
             _X = parX;
             _Y = parY;
@@ -101,7 +85,6 @@ namespace PipesSolver
             _Orientations.Add(new Point(0, 1));
             _Orientations.Add(new Point(-1, 0));
             _Orientations.Add(new Point(0, -1));
-            _StaticOrientations = _Orientations;
             _X = parVector.X;
             _Y = parVector.Y;
         }

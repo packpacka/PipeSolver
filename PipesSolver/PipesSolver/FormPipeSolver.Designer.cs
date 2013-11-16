@@ -45,24 +45,15 @@
             this.Column5 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewImageColumn();
             this.buttonDepthSolve = new System.Windows.Forms.Button();
-            this.buttonEstimatorSolve = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.buttonBreadthSolve = new System.Windows.Forms.Button();
             this.buttonDepthLog = new System.Windows.Forms.Button();
             this.buttonBreathLog = new System.Windows.Forms.Button();
-            this.buttonEstimatorLog = new System.Windows.Forms.Button();
-            this.buttonSaveTask = new System.Windows.Forms.Button();
-            this.buttonLoadTask = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.buttonPartialyRecessLog = new System.Windows.Forms.Button();
-            this.buttonPartialyRecess = new System.Windows.Forms.Button();
-            this.numericUpDownLocalDepth = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLocalDepth)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonApplyDim
@@ -109,7 +100,7 @@
             this.dataGridViewField.Name = "dataGridViewField";
             this.dataGridViewField.ReadOnly = true;
             this.dataGridViewField.RowTemplate.Height = 24;
-            this.dataGridViewField.Size = new System.Drawing.Size(623, 620);
+            this.dataGridViewField.Size = new System.Drawing.Size(623, 550);
             this.dataGridViewField.TabIndex = 6;
             this.dataGridViewField.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewField_CellContentClick);
             this.dataGridViewField.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewField_CellContentDoubleClick);
@@ -245,32 +236,41 @@
             // 
             // buttonDepthSolve
             // 
-            this.buttonDepthSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDepthSolve.Location = new System.Drawing.Point(12, 303);
+            this.buttonDepthSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDepthSolve.Location = new System.Drawing.Point(12, 304);
             this.buttonDepthSolve.Name = "buttonDepthSolve";
-            this.buttonDepthSolve.Size = new System.Drawing.Size(197, 60);
+            this.buttonDepthSolve.Size = new System.Drawing.Size(212, 60);
             this.buttonDepthSolve.TabIndex = 11;
             this.buttonDepthSolve.Text = "Поиск в глубину";
             this.buttonDepthSolve.UseVisualStyleBackColor = true;
             this.buttonDepthSolve.Click += new System.EventHandler(this.buttonDepthSolve_Click);
             // 
-            // buttonEstimatorSolve
+            // button1
             // 
-            this.buttonEstimatorSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEstimatorSolve.Location = new System.Drawing.Point(12, 435);
-            this.buttonEstimatorSolve.Name = "buttonEstimatorSolve";
-            this.buttonEstimatorSolve.Size = new System.Drawing.Size(197, 60);
-            this.buttonEstimatorSolve.TabIndex = 12;
-            this.buttonEstimatorSolve.Text = "Поиск по градиенту";
-            this.buttonEstimatorSolve.UseVisualStyleBackColor = true;
-            this.buttonEstimatorSolve.Click += new System.EventHandler(this.buttonEstimatorSolve_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(12, 436);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(212, 60);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Поиск через бюро находок";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(12, 502);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(212, 60);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Поиск конем";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // buttonBreadthSolve
             // 
-            this.buttonBreadthSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBreadthSolve.Location = new System.Drawing.Point(12, 369);
+            this.buttonBreadthSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBreadthSolve.Location = new System.Drawing.Point(12, 370);
             this.buttonBreadthSolve.Name = "buttonBreadthSolve";
-            this.buttonBreadthSolve.Size = new System.Drawing.Size(197, 60);
+            this.buttonBreadthSolve.Size = new System.Drawing.Size(212, 60);
             this.buttonBreadthSolve.TabIndex = 14;
             this.buttonBreadthSolve.Text = "Поиск в ширину";
             this.buttonBreadthSolve.UseVisualStyleBackColor = true;
@@ -278,121 +278,34 @@
             // 
             // buttonDepthLog
             // 
-            this.buttonDepthLog.Location = new System.Drawing.Point(215, 303);
+            this.buttonDepthLog.Location = new System.Drawing.Point(230, 304);
             this.buttonDepthLog.Name = "buttonDepthLog";
-            this.buttonDepthLog.Size = new System.Drawing.Size(90, 60);
+            this.buttonDepthLog.Size = new System.Drawing.Size(75, 60);
             this.buttonDepthLog.TabIndex = 15;
-            this.buttonDepthLog.Text = "Сведения";
+            this.buttonDepthLog.Text = "Лог";
             this.buttonDepthLog.UseVisualStyleBackColor = true;
             this.buttonDepthLog.Click += new System.EventHandler(this.buttonDepthLog_Click);
             // 
             // buttonBreathLog
             // 
-            this.buttonBreathLog.Location = new System.Drawing.Point(215, 369);
+            this.buttonBreathLog.Location = new System.Drawing.Point(230, 370);
             this.buttonBreathLog.Name = "buttonBreathLog";
-            this.buttonBreathLog.Size = new System.Drawing.Size(90, 60);
+            this.buttonBreathLog.Size = new System.Drawing.Size(75, 60);
             this.buttonBreathLog.TabIndex = 16;
-            this.buttonBreathLog.Text = "Сведения";
+            this.buttonBreathLog.Text = "Лог";
             this.buttonBreathLog.UseVisualStyleBackColor = true;
             this.buttonBreathLog.Click += new System.EventHandler(this.buttonBreathLog_Click);
-            // 
-            // buttonEstimatorLog
-            // 
-            this.buttonEstimatorLog.Location = new System.Drawing.Point(215, 435);
-            this.buttonEstimatorLog.Name = "buttonEstimatorLog";
-            this.buttonEstimatorLog.Size = new System.Drawing.Size(90, 60);
-            this.buttonEstimatorLog.TabIndex = 17;
-            this.buttonEstimatorLog.Text = "Сведения";
-            this.buttonEstimatorLog.UseVisualStyleBackColor = true;
-            this.buttonEstimatorLog.Click += new System.EventHandler(this.buttonEstimatorLog_Click);
-            // 
-            // buttonSaveTask
-            // 
-            this.buttonSaveTask.Location = new System.Drawing.Point(13, 248);
-            this.buttonSaveTask.Name = "buttonSaveTask";
-            this.buttonSaveTask.Size = new System.Drawing.Size(145, 32);
-            this.buttonSaveTask.TabIndex = 18;
-            this.buttonSaveTask.Text = "Сохранить задачу";
-            this.buttonSaveTask.UseVisualStyleBackColor = true;
-            this.buttonSaveTask.Click += new System.EventHandler(this.buttonSaveTask_Click);
-            // 
-            // buttonLoadTask
-            // 
-            this.buttonLoadTask.Location = new System.Drawing.Point(164, 248);
-            this.buttonLoadTask.Name = "buttonLoadTask";
-            this.buttonLoadTask.Size = new System.Drawing.Size(141, 32);
-            this.buttonLoadTask.TabIndex = 19;
-            this.buttonLoadTask.Text = "Загрузить задачу";
-            this.buttonLoadTask.UseVisualStyleBackColor = true;
-            this.buttonLoadTask.Click += new System.EventHandler(this.buttonLoadTask_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // buttonPartialyRecessLog
-            // 
-            this.buttonPartialyRecessLog.Location = new System.Drawing.Point(215, 562);
-            this.buttonPartialyRecessLog.Name = "buttonPartialyRecessLog";
-            this.buttonPartialyRecessLog.Size = new System.Drawing.Size(90, 70);
-            this.buttonPartialyRecessLog.TabIndex = 21;
-            this.buttonPartialyRecessLog.Text = "Сведения";
-            this.buttonPartialyRecessLog.UseVisualStyleBackColor = true;
-            this.buttonPartialyRecessLog.Click += new System.EventHandler(this.buttonPartialyRecessLog_Click);
-            // 
-            // buttonPartialyRecess
-            // 
-            this.buttonPartialyRecess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonPartialyRecess.Location = new System.Drawing.Point(12, 562);
-            this.buttonPartialyRecess.Name = "buttonPartialyRecess";
-            this.buttonPartialyRecess.Size = new System.Drawing.Size(197, 70);
-            this.buttonPartialyRecess.TabIndex = 20;
-            this.buttonPartialyRecess.Text = "Стратегия локально-углубленного поиска";
-            this.buttonPartialyRecess.UseVisualStyleBackColor = true;
-            this.buttonPartialyRecess.Click += new System.EventHandler(this.buttonPartialyRecess_Click);
-            // 
-            // numericUpDownLocalDepth
-            // 
-            this.numericUpDownLocalDepth.Location = new System.Drawing.Point(249, 529);
-            this.numericUpDownLocalDepth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownLocalDepth.Name = "numericUpDownLocalDepth";
-            this.numericUpDownLocalDepth.Size = new System.Drawing.Size(56, 22);
-            this.numericUpDownLocalDepth.TabIndex = 22;
-            this.numericUpDownLocalDepth.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 534);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 17);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Величина локального углубления";
             // 
             // FormPipeSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 644);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDownLocalDepth);
-            this.Controls.Add(this.buttonPartialyRecessLog);
-            this.Controls.Add(this.buttonPartialyRecess);
-            this.Controls.Add(this.buttonLoadTask);
-            this.Controls.Add(this.buttonSaveTask);
-            this.Controls.Add(this.buttonEstimatorLog);
+            this.ClientSize = new System.Drawing.Size(956, 574);
             this.Controls.Add(this.buttonBreathLog);
             this.Controls.Add(this.buttonDepthLog);
             this.Controls.Add(this.buttonBreadthSolve);
-            this.Controls.Add(this.buttonEstimatorSolve);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDepthSolve);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -407,9 +320,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLocalDepth)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -432,19 +343,11 @@
         private System.Windows.Forms.DataGridViewImageColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn Column6;
         private System.Windows.Forms.Button buttonDepthSolve;
-        private System.Windows.Forms.Button buttonEstimatorSolve;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonBreadthSolve;
         private System.Windows.Forms.Button buttonDepthLog;
         private System.Windows.Forms.Button buttonBreathLog;
-        private System.Windows.Forms.Button buttonEstimatorLog;
-        private System.Windows.Forms.Button buttonSaveTask;
-        private System.Windows.Forms.Button buttonLoadTask;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button buttonPartialyRecessLog;
-        private System.Windows.Forms.Button buttonPartialyRecess;
-        private System.Windows.Forms.NumericUpDown numericUpDownLocalDepth;
-        private System.Windows.Forms.Label label2;
     }
 }
 

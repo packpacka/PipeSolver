@@ -2,33 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
-
 
 namespace PipesSolver
 {
-    /// <summary>
-    /// Класс дерева решений
-    /// </summary>
-    class SolutionThree
+    class BreadthMethodSolutionThree
     {
-        /// <summary>
+         /// <summary>
         /// Дочерние узлы дерева
         /// </summary>
-        private List<SolutionThree> _ChildNodes;
+        private List<BreadthMethodSolutionThree> _ChildNodes;
         /// <summary>
         /// Родительский узел
         /// </summary>
-        private SolutionThree _Root;
+        private BreadthMethodSolutionThree _Root;
         /// <summary>
         /// Уровень узла
         /// </summary>
         private int _Level;
-
         /// <summary>
         /// Ход
         /// </summary>
         private Move _Move;
+        /// <summary>
+        /// Состояние поля на текущем ходе
+        /// </summary>
+        private Pipe[,] _Field;
 
         
         /// <summary>
@@ -36,21 +34,22 @@ namespace PipesSolver
         /// </summary>
         /// <param name="parRoot">Родиельский узел</param>
         /// <param name="parLevel">Уровень</param>
-        public SolutionThree(Move parMove, SolutionThree parRoot, int parLevel)
+        public BreadthMethodSolutionThree(Move parMove, Pipe[,] parField, BreadthMethodSolutionThree parRoot, int parLevel)
         {
             _Root = parRoot;
             _Level = parLevel;
             _Move = parMove;
-            _ChildNodes = new List<SolutionThree>(); 
+            _ChildNodes = new List<BreadthMethodSolutionThree>();
+            _Field = parField;
         }
 
         /// <summary>
         /// Добавить дочерний узел в дерево
         /// </summary>
         /// <param name="parMove"></param>
-        public void AddChildNode(Move parMove)
+        public void AddChildNode(Move parMove, Pipe[,] parField)
         {
-            _ChildNodes.Add(new SolutionThree(parMove, this, _Level + 1));
+            _ChildNodes.Add(new BreadthMethodSolutionThree(parMove, parField, this, _Level + 1));
         }
 
         /// <summary>
@@ -61,19 +60,18 @@ namespace PipesSolver
         {
             _ChildNodes.RemoveAt(parChildIndex);
         }
-
         
         /// <summary>
         /// Дочерние узлы дерева
         /// </summary>
-        public List<SolutionThree> ChildNodes
+        public List<BreadthMethodSolutionThree> ChildNodes
         {
             get { return _ChildNodes; }
         }
         /// <summary>
         /// Родительский узел
         /// </summary>
-        public SolutionThree Root
+        public BreadthMethodSolutionThree Root
         {
             get { return _Root; }
         }
@@ -90,6 +88,13 @@ namespace PipesSolver
         public Move Move
         {
             get { return _Move; }
+        }
+        /// <summary>
+        /// Состояние поля на текущем ходе
+        /// </summary>
+        public Pipe[,] Field
+        {
+            get {return _Field;}
         }
 
     }

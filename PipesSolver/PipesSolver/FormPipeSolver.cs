@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PipesSolver
 {
@@ -184,27 +183,24 @@ namespace PipesSolver
         /// </summary>
         public void CreateTaskField()
         {
-            dataGridViewField.Rows.Clear();
-            dataGridViewField.Columns.Clear();
-
-            DataGridViewImageColumn col = new DataGridViewImageColumn();
-            col.Image = Properties.Resources.border;
-            col.Width = FIELD_CELL_WIDTH / 2;
-            col.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            dataGridViewField.Columns.Add(col);
-            for (int i = 0; i < _ColCount; i++)
-            {
-                col = new DataGridViewImageColumn();
-                col.Width = FIELD_CELL_WIDTH;
-                col.Image = Properties.Resources.fieldsegment;
+                DataGridViewImageColumn col = new DataGridViewImageColumn();
+                col.Image = Properties.Resources.border;
+                col.Width = FIELD_CELL_WIDTH / 2;
                 col.ImageLayout = DataGridViewImageCellLayout.Stretch;
                 dataGridViewField.Columns.Add(col);
-            }
-            col = new DataGridViewImageColumn();
-            col.Width = FIELD_CELL_WIDTH / 2;
-            col.Image = Properties.Resources.border;
-            col.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            dataGridViewField.Columns.Add(col);
+                for (int i = 0; i < _ColCount; i++)
+                {
+                    col = new DataGridViewImageColumn();
+                    col.Width = FIELD_CELL_WIDTH;
+                    col.Image = Properties.Resources.fieldsegment;
+                    col.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    dataGridViewField.Columns.Add(col);
+                }
+                col = new DataGridViewImageColumn();
+                col.Width = FIELD_CELL_WIDTH / 2;
+                col.Image = Properties.Resources.border;
+                col.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                dataGridViewField.Columns.Add(col);
             
 
             dataGridViewField.RowTemplate.Height = FIELD_CELL_HEIGTH / 2;
@@ -218,27 +214,7 @@ namespace PipesSolver
             {
                 dataGridViewField.Rows[0].Cells[i].Value = Properties.Resources.border;
                 dataGridViewField.Rows[_RowCount + 1].Cells[i].Value = Properties.Resources.border;
-            }                   
-        }
-
-        /// <summary>
-        /// Вывод задачи
-        /// </summary>
-        private void OutputTaskField()
-        {
-            for (int i = 1; i <= _ColCount; i++)
-            {
-                for (int j = 1; j <=_RowCount; j++)
-                {
-                    if ((object)_PipesOnField[i,j] != null)
-                    {
-                        dataGridViewField.Rows[j].Cells[i].Value = _PipesOnField[i,j].Image;
-                    }
-                }
-            }
-
-            dataGridViewField.Rows[_Enter.Y].Cells[_Enter.X].Value = Properties.Resources.enter;
-            dataGridViewField.Rows[_Exit.Y].Cells[_Exit.X].Value = Properties.Resources.exit;            
+            }                    
         }
 
         /// <summary>
@@ -262,27 +238,6 @@ namespace PipesSolver
 
             dataGridViewField.Rows[_RowCount + 2 + _Enter.Y].Cells[_Enter.X].Value = Properties.Resources.enter;
             dataGridViewField.Rows[_RowCount + 2 + _Exit.Y].Cells[_Exit.X].Value = Properties.Resources.exit;
-        }
-
-        /// <summary>
-        /// Вывод поля решения
-        /// </summary>
-        /// <param name="parField"></param>
-        private void OutputSolve(Pipe[,] parField)
-        {
-            CreateSolveField();
-
-            for (int j = 0; j < _RowCount + 2; j++)
-            {
-               
-                for (int i = 0; i < _ColCount + 2; i++)
-                {
-                    if ((object)parField[i, j] != null)
-                    {
-                        dataGridViewField.Rows[j + _RowCount + 2].Cells[i].Value = parField[i, j].Image;
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -349,8 +304,8 @@ namespace PipesSolver
         private void dataGridViewField_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //если нажали на бордюр поля
-            if (((e.ColumnIndex == 0) || (e.ColumnIndex == _ColCount + 1) ||
-                (e.RowIndex == 0) || (e.RowIndex == _RowCount + 1))&&(e.ColumnIndex != e.RowIndex))
+            if (((e.ColumnIndex == 0) || (e.ColumnIndex == dataGridViewField.ColumnCount - 1) ||
+                (e.RowIndex == 0) || (e.RowIndex == dataGridViewField.RowCount - 1))&&(e.ColumnIndex != e.RowIndex))
             {
                 //если в данный момент действие  - указание выхода,
                 if ((_Action == Actions.MarkEnter) && ((_Exit.X != e.ColumnIndex) || (_Exit.Y != e.RowIndex)))
@@ -446,18 +401,12 @@ namespace PipesSolver
         /// <param name="e"></param>
         private void dataGridViewField_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                //Если мы нечего не делали и в клетке, по которой был клик, есть труба,
-                if ((_Action == Actions.None) && ((object)_PipesOnField[e.ColumnIndex, e.RowIndex] != null))
-                {
-                    //удаляем ту трубу
-                    _PipesOnField[e.ColumnIndex, e.RowIndex] = null;
-                    dataGridViewField.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.fieldsegment;
-                }
-            }
-            catch
-            {
+            //Если мы нечего не делали и в клетке, по которой был клик, есть труба,
+            if ((_Action == Actions.None)&&((object)_PipesOnField[e.ColumnIndex,e.RowIndex] != null))
+            { 
+                //удаляем ту трубу
+                _PipesOnField[e.ColumnIndex, e.RowIndex] = null;
+                dataGridViewField.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.fieldsegment;
             }
         }
 
@@ -486,6 +435,23 @@ namespace PipesSolver
 
         }
 
+        private void OutputSolve(Pipe[,] parField)
+        {
+            CreateSolveField();
+
+            for (int j = 0; j < _RowCount + 2; j++)
+            {
+               
+                for (int i = 0; i < _ColCount + 2; i++)
+                {
+                    if ((object)parField[i, j] != null)
+                    {
+                        dataGridViewField.Rows[j + _RowCount + 2].Cells[i].Value = parField[i, j].Image;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Получить копию поля
         /// </summary>
@@ -505,32 +471,19 @@ namespace PipesSolver
             return field;
         }
 
-        /// <summary>
-        /// Запись результатов решения в файл
-        /// </summary>
-        /// <param name="parLog"></param>
-        /// <param name="parPath"></param>
         private void WriteLog(Brainteaser.SolveResult parLog, string parPath)
         {
             StreamWriter sw = new StreamWriter(parPath);
-            string result = parLog.Complete ? "РЕШЕНИЕ НАЙДЕНО" : "РЕШЕНИЕ НЕ НАЙДЕНО";
+            string result = parLog.Complete ? "решение найдено" : "решение ненайдено";
             
             sw.WriteLine("Метод решения - " + parLog.Method);
             sw.WriteLine("Статус выполнения - " + result);
             sw.WriteLine("Время выполнения - " + parLog.ProcessTime.Elapsed);
             sw.WriteLine("Максимальная глубина поиска - " + parLog.MaxDepth);
             sw.WriteLine("Количество сгенерированных узлов - " + parLog.GeneratedNodesCount);
-            sw.WriteLine("Длина пути решения - " + parLog.PathLenght);
-            sw.WriteLine("Направленность - " + parLog.Directionality);
-            sw.WriteLine("Разветвелнность - " + parLog.Branching);
             sw.Close();
         }
 
-        /// <summary>
-        /// Нажатие кнопки лога поиска в глубину
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void buttonDepthLog_Click(object sender, EventArgs e)
         {
             //создаем форму сведений о выполнении 
@@ -539,12 +492,7 @@ namespace PipesSolver
             //и заносим туда данные
             logForm.FillLogForm("DepthLog.txt");
         }
-        
-        /// <summary>
-        /// Нажатие кнопки поиска в ширину
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void buttonBreadthSolve_Click(object sender, EventArgs e)
         {
             //получаем копию поля 
@@ -564,142 +512,14 @@ namespace PipesSolver
             formLog.FillLogForm("BreadthLog.txt");
         }
 
-        /// <summary>
-        /// Кнопка вызова лога поиска в ширину
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void buttonBreathLog_Click(object sender, EventArgs e)
         {
             //создаем форму сведений о выполнении 
             FormLog formLog = new FormLog();
             formLog.Show();
             //и заносим туда данные
-            formLog.FillLogForm("BreadthLog.txt");
+            formLog.FillLogForm("DepthLog.txt");
         }
-        
-        /// <summary>
-        /// Нажатие кнопки поиска с оценочной функцией
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonEstimatorSolve_Click(object sender, EventArgs e)
-        {
-            //получаем копию поля 
-            Pipe[,] testField = GetCopeField();
-            //создаем задачу с нащим полем
-            Brainteaser br = new Brainteaser(testField, _ColCount, _RowCount, _Enter, _Exit);
-            //решаем задачу
-            br.GradientSolve();
-            //выводим ответ
-            OutputSolve(br.Log.Field);
-            //записываем результат выполнения в файл
-            WriteLog(br.Log, "GradientLog.txt");
-            //создаем форму сведений о выполнении 
-            FormLog formLog = new FormLog();
-            formLog.Show();
-            //и заносим туда данные
-            formLog.FillLogForm("GradientLog.txt");
-        }
-
-        /// <summary>
-        /// Нажатие кнопки лога поиска оценочной функции
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonEstimatorLog_Click(object sender, EventArgs e)
-        {
-            //создаем форму сведений о выполнении 
-            FormLog formLog = new FormLog();
-            formLog.Show();
-            //и заносим туда данные
-            formLog.FillLogForm("EstimatorLog.txt");
-        }
-
-        private void buttonSaveTask_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-
-            try
-            {
-                using (FileStream fs = File.Create(sfd.FileName))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(fs, _PipesOnField);
-                    formatter.Serialize(fs, _Enter);
-                    formatter.Serialize(fs, _Exit);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Задача не сохранена");
-            }
-
-        }
-
-        private void buttonLoadTask_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.ShowDialog();
-                using (FileStream fs = File.Open(ofd.FileName, FileMode.Open))
-                {
-                    _PipesOnField = null;
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    _PipesOnField = (Pipe[,])formatter.Deserialize(fs);
-                    _Enter = (Point)formatter.Deserialize(fs);
-                    _Exit = (Point)formatter.Deserialize(fs);
-
-
-                }
-
-                _ColCount = _PipesOnField.GetLength(0) - 2;
-                _RowCount = _PipesOnField.GetLength(1) - 2;
-
-
-                textBoxColCount.Text = _ColCount.ToString();
-                textBoxRowCount.Text = _RowCount.ToString();
-
-                CreateTaskField();
-                OutputTaskField();
-            }
-            catch
-            {
-                MessageBox.Show("Задача не была загружена");
-            }
-            
-        }
-
-        private void buttonPartialyRecess_Click(object sender, EventArgs e)
-        {
-            //получаем копию поля 
-            Pipe[,] testField = GetCopeField();
-            //создаем задачу с нащим полем
-            Brainteaser br = new Brainteaser(testField, _ColCount, _RowCount, _Enter, _Exit);
-            //решаем задачу
-            br.PartialyRecess((int)numericUpDownLocalDepth.Value);
-            //выводим ответ
-            OutputSolve(br.Log.Field);
-            //записываем результат выполнения в файл
-            WriteLog(br.Log, "PartialyRecessLog.txt");
-            //создаем форму сведений о выполнении 
-            FormLog formLog = new FormLog();
-            formLog.Show();
-            //и заносим туда данные
-            formLog.FillLogForm("PartialyRecessLog.txt");
-        }
-
-        private void buttonPartialyRecessLog_Click(object sender, EventArgs e)
-        {
-            //создаем форму сведений о выполнении 
-            FormLog formLog = new FormLog();
-            formLog.Show();
-            //и заносим туда данные
-            formLog.FillLogForm("PartialyRecessLog.txt");
-        }
-
 
     }
 }

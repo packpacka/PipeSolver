@@ -9,8 +9,7 @@ namespace PipesSolver
     /// <summary>
     /// Класс трубы
     /// </summary>
-    [Serializable]
-    public  class Pipe 
+    public class Pipe 
     {
         /// <summary>
         /// Массив шаблонов труб
