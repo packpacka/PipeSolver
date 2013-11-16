@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brainteaser.cs" />
-    <Compile Include="BreadthMethodSolutionThree.cs" />
     <Compile Include="FormLog.cs">
       <SubType>Form</SubType>
     </Compile>

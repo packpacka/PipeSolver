@@ -436,9 +436,9 @@ namespace PipesSolver
             _Log.PathLenght = 0;
 
             //инициализируем список вершин дерева решений на текущем уровне
-            List<BreadthMethodSolutionThree> currentLevelNodes = new List<BreadthMethodSolutionThree>();
+            List<SolutionThree> currentLevelNodes = new List<SolutionThree>();
             //и на следующем уровне
-            List<BreadthMethodSolutionThree> nextLevelNodes = new List<BreadthMethodSolutionThree>();
+            List<SolutionThree> nextLevelNodes = new List<SolutionThree>();
 
             // помечаем, что задача еще не решена
             bool complete = false;
@@ -470,7 +470,7 @@ namespace PipesSolver
             //добавляем в дерево решений первую(корневую) вершину
             Pipe theFirstPipe = new Pipe(_Enter, -direction, direction, null);
             Move theFirstMove = new Move(new Point(_Enter.X - direction.X, _Enter.Y - direction.Y), theFirstPipe, theFirstPipe, GetFieldCopy(_WorkingField)); 
-            BreadthMethodSolutionThree solutionThree = new BreadthMethodSolutionThree(theFirstMove, null, 0);
+            SolutionThree solutionThree = new SolutionThree(theFirstMove, null, 0);
 
 
             //добавляем корневую вершину в список вершин текущего уровня
@@ -510,7 +510,7 @@ namespace PipesSolver
                             //совершаем ход на поле рассматриваемого узла
                             MakeMove(availableMove[j], availableMove[j].Field);
                             //добавляем ход и получившееся поле в дерево решений
-                            BreadthMethodSolutionThree newNode = new BreadthMethodSolutionThree(availableMove[j],currentLevelNodes[i], currentLevelNodes[i].Level + 1); 
+                            SolutionThree newNode = new SolutionThree(availableMove[j],currentLevelNodes[i], currentLevelNodes[i].Level + 1); 
                             
                             nextLevelNodes.Add(newNode);
                             _Log.GeneratedNodesCount++;
@@ -570,7 +570,7 @@ namespace PipesSolver
                     {
                         //переходим на следующий уровень дерева решений
                         currentLevelNodes = nextLevelNodes;
-                        nextLevelNodes = new List<BreadthMethodSolutionThree>();
+                        nextLevelNodes = new List<SolutionThree>();
                     }
                 }
 
@@ -642,7 +642,7 @@ namespace PipesSolver
             //добавляем в дерево решений первую(корневую) вершину
             Pipe theFirstPipe = new Pipe(_Enter, -direction, direction, null);
             Move theFirstMove = new Move(new Point(_Enter.X - direction.X, _Enter.Y - direction.Y), theFirstPipe, theFirstPipe, GetFieldCopy(_WorkingField));
-            BreadthMethodSolutionThree solutionThree = new BreadthMethodSolutionThree(theFirstMove, null, 0);
+            SolutionThree solutionThree = new SolutionThree(theFirstMove, null, 0);
 
             //запускаем поиск
             complete = PartialyRecess(solutionThree, parLocalDepth);
@@ -675,7 +675,7 @@ namespace PipesSolver
         /// <param name="parSolutionThree">узел дерева из которого совершается углубление</param>
         /// <param name="parLocalDepth">величина локального углубления</param>
         /// <returns></returns>
-        private bool PartialyRecess(BreadthMethodSolutionThree parSolutionThree, int parLocalDepth)
+        private bool PartialyRecess(SolutionThree parSolutionThree, int parLocalDepth)
         {
             // помечаем, что задача еще не решена
             bool complete = false;
@@ -685,9 +685,9 @@ namespace PipesSolver
             int localDepth = 0;
 
             //инициализируем список вершин дерева решений на текущем уровне
-            List<BreadthMethodSolutionThree> currentLevelNodes = new List<BreadthMethodSolutionThree>();
+            List<SolutionThree> currentLevelNodes = new List<SolutionThree>();
             //и на следующем уровне
-            List<BreadthMethodSolutionThree> nextLevelNodes = new List<BreadthMethodSolutionThree>();
+            List<SolutionThree> nextLevelNodes = new List<SolutionThree>();
 
 
             //получаем текущее положение и направление движения
@@ -741,7 +741,7 @@ namespace PipesSolver
                                 //совершаем ход на поле рассматриваемого узла
                                 MakeMove(availableMove[j], availableMove[j].Field);
                                 //добавляем ход и получившееся поле в дерево решений
-                                BreadthMethodSolutionThree newNode = new BreadthMethodSolutionThree(availableMove[j], currentLevelNodes[i], currentLevelNodes[i].Level + 1);
+                                SolutionThree newNode = new SolutionThree(availableMove[j], currentLevelNodes[i], currentLevelNodes[i].Level + 1);
                                 nextLevelNodes.Add(newNode);
                                 _Log.GeneratedNodesCount++;
 
@@ -802,7 +802,7 @@ namespace PipesSolver
                      {
                          //переходим на следующий уровень дерева решений
                          currentLevelNodes = nextLevelNodes;
-                         nextLevelNodes = new List<BreadthMethodSolutionThree>();
+                         nextLevelNodes = new List<SolutionThree>();
                          //если пора оценить вершины
                          localDepth++;
                          if (localDepth == parLocalDepth)
@@ -819,9 +819,9 @@ namespace PipesSolver
             return complete;
         }
 
-        private void SortTHreeNodesBysEstimator(List<BreadthMethodSolutionThree> parThreeNodes)
+        private void SortTHreeNodesBysEstimator(List<SolutionThree> parThreeNodes)
         {
-             List<BreadthMethodSolutionThree> nodes = parThreeNodes;
+             List<SolutionThree> nodes = parThreeNodes;
             List<int> estimatorValues = new List<int>();
             Point currentPoint;
             Orientation direction;
@@ -847,7 +847,7 @@ namespace PipesSolver
                         estimatorValues.RemoveAt(i);
                         estimatorValues.Insert(j, rating);
 
-                        BreadthMethodSolutionThree node = nodes[i];
+                        SolutionThree node = nodes[i];
                         nodes.RemoveAt(i);
                         nodes.Insert(j, node);
                     }
